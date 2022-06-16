@@ -1,8 +1,11 @@
 {
-  "name": "line-counter",
-	"displayName": "line-counter",
+  	"name": "line-counter-dw1",
+	"publisher": "HassamUllah",
+	"displayName": "Line Counter",
+	"icon": "images/word.png",
 	"description": "",
 	"version": "0.0.1",
+	"repository": {},
 	"engines": {
 		"vscode": "^1.68.0"
 	},
@@ -10,16 +13,29 @@
 		"Other"
 	],
 	"activationEvents": [
-        "onCommand:line-counter.helloWorld"
+        "onCommand:line-counter.sayHello",
+		"onCommand:line-counter.sayHello2"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
 		"commands": [
 			{
-				"command": "line-counter.helloWorld",
-				"title": "Hello World"
+				"command": "line-counter.sayHello",
+				"title": "Say Hello"
+			},
+			{
+				"command": "line-counter.sayHello2",
+				"title": "Say Hello 2"
 			}
-		]
+		],
+		"menus": {
+			"commandPalette": [
+				{
+					"command": "line-counter.sayHello",
+					"when": "editorLangId == markdown"
+				}
+			]
+		}
 	},
 	"scripts": {
 		"vscode:prepublish": "npm run compile",

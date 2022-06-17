@@ -4,8 +4,11 @@
 	"displayName": "Line Counter",
 	"icon": "images/word.png",
 	"description": "",
-	"version": "0.0.1",
-	"repository": {},
+	"version": "0.0.5",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/hassamUllah23/line-counter.git"
+	  },
 	"engines": {
 		"vscode": "^1.68.0"
 	},
@@ -13,29 +16,16 @@
 		"Other"
 	],
 	"activationEvents": [
-        "onCommand:line-counter.sayHello",
-		"onCommand:line-counter.sayHello2"
+		"*"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
 		"commands": [
 			{
-				"command": "line-counter.sayHello",
-				"title": "Say Hello"
-			},
-			{
-				"command": "line-counter.sayHello2",
-				"title": "Say Hello 2"
+				"command": "line-counter.countLines",
+				"title": "Count Lines"
 			}
-		],
-		"menus": {
-			"commandPalette": [
-				{
-					"command": "line-counter.sayHello",
-					"when": "editorLangId == markdown"
-				}
-			]
-		}
+		]
 	},
 	"scripts": {
 		"vscode:prepublish": "npm run compile",

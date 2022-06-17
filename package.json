@@ -2,7 +2,7 @@
   	"name": "line-counter-dw1",
 	"publisher": "HassamUllah",
 	"displayName": "Line Counter",
-	"icon": "images/word.png",
+	"icon": "images/count.png",
 	"description": "",
 	"version": "0.0.5",
 	"repository": {
@@ -16,16 +16,32 @@
 		"Other"
 	],
 	"activationEvents": [
-		"*"
+		"*",
+		"onCommand:countLinesFromMenu"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
+		"keybindings":[
+			{
+				"command": "line-counter.countLinesFromMenu",
+				"key": "ctrl+c ctrl+l"
+			}
+		],
 		"commands": [
 			{
 				"command": "line-counter.countLines",
+				"title": "CL"
+			},
+			{
+				"command": "line-counter.countLinesFromMenu",
 				"title": "Count Lines"
 			}
-		]
+		],
+		"menus": {
+			"explorer/context": [{
+				"command": "line-counter.countLines"
+		  }]
+		}
 	},
 	"scripts": {
 		"vscode:prepublish": "npm run compile",

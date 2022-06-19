@@ -1,10 +1,22 @@
 {
-  	"name": "line-counter-dw1",
+  	"name": "line-counter",
 	"publisher": "HassamUllah",
 	"displayName": "Line Counter",
 	"icon": "images/count.png",
-	"description": "",
-	"version": "0.0.5",
+	"description": "Keep a check on the number of lines in your active editor and in your selection.",
+	"qna": "marketplace",
+	"version": "0.0.6",
+	"keywords": [
+		"line counter",
+		"line",
+		"counter",
+		"select",
+		"code"
+	],
+	"galleryBanner": {
+		"color": "#184a43",
+		"theme": "dark"
+	},
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/hassamUllah23/line-counter.git"
@@ -17,24 +29,33 @@
 	],
 	"activationEvents": [
 		"*",
-		"onCommand:countLinesFromMenu"
+		"onStartupFinished:line-counter.countLines",
+		"onCommand:line-counter.countLinesX"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
 		"keybindings":[
 			{
-				"command": "line-counter.countLinesFromMenu",
+				"command": "line-counter.countLines",
 				"key": "ctrl+c ctrl+l"
+			},
+			{
+				"command": "line-counter.countLinesFromMenu",
+				"key": "ctrl+shift+c ctrl+shift+l"
 			}
 		],
 		"commands": [
 			{
 				"command": "line-counter.countLines",
-				"title": "CL"
+				"title": "Count Lines: In Active Editor"
+			},
+			{
+				"command": "line-counter.countLinesX",
+				"title": "Count Lines: In Active Editor X"
 			},
 			{
 				"command": "line-counter.countLinesFromMenu",
-				"title": "Count Lines"
+				"title": "Count Lines: In Project"
 			}
 		],
 		"menus": {

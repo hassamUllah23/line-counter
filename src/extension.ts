@@ -1,63 +1,38 @@
 import * as vscode from 'vscode';
+import { CountLines } from './commands/countLines';
+import { CountLinesFromMenu } from './commands/countLinesFromMenu';
+import { Command } from './Interfaces/Command';
 
-let myStatusBarItem: vscode.StatusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left,0);
+// function subscribe(context: vscode.ExtensionContext, command: Command) {
+	
+// 	context.subscriptions.push(command.getCommandDisposable());
+
+// 	if(command.isRealTime()){
+// 		vscode.window.showInformationMessage(`message ${command.isRealTime()}`);
+// 		context.subscriptions.push(vscode.window.onDidChangeActiveTextEditor(command.getCommandDisposable));
+// 		context.subscriptions.push(vscode.window.onDidChangeTextEditorSelection(command.getCommandDisposable));
+// 	}
+// }
+
+let myStatusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left,0);
 
 export function activate(context: vscode.ExtensionContext) {
-	
-	let countLines = vscode.commands.registerCommand('line-counter.countLines', () => {
+	// subscribe(context,new CountLines(context));
+	// subscribe(context,new CountLinesFromMenu());
+
+	const x = new CountLines(context);
+	// const y = new CountLinesFromMenu(context);
+
+	let countLines = vscode.commands.registerCommand('line-counter.countLinesX', () => {
 		updateStatusBarItem();
 	});
+
 	
-	let countLinesFromMenu = vscode.commands.registerCommand('line-counter.countLinesFromMenu', () => {
-		
-
-		const panel = vscode.window.createWebviewPanel(
-			'countLinesOutput', // Identifies the type of the webview. Used internally
-			'Count Lines Output', // Title of the panel displayed to the user
-			vscode.ViewColumn.One, // Editor column to show the new webview panel in.
-			{} // Webview options. More on these later.
-		  );
-		  
-		  const starting:string =
-		  `
-		  <html>
-			<head>
-				<title>Count Lines Output</title>
-			</head>
-		  <body>
-		  `;
-
-		  const ending:string = 
-		  `
-			</body>
-			</html>
-		  `;
-
-		  const body:string = `
-		  <h1>Languages</h1>
-		  <ul>
-			  <li>TypeScript</li>
-			  <li>HTML</li>
-			  <li>CSS</li>
-		  </ul>
-		  `;
-
-		  const contentString ='';
-		  contentString.concat(starting);
-		  contentString.concat(body);
-		  contentString.concat(ending);
-
-		  vscode.window.showInformationMessage("Final",contentString);
-		
-
-		  panel.webview.html=contentString;
-	});
 
 	context.subscriptions.push(countLines);
-	context.subscriptions.push(countLinesFromMenu);
-	context.subscriptions.push(vscode.window.onDidChangeActiveTextEditor(updateStatusBarItem));
-	context.subscriptions.push(vscode.window.onDidChangeTextEditorSelection(updateStatusBarItem));
-	
+
+	//only for testing purpose
+	vscode.window.showInformationMessage(`Total Subscriptions: ${context.subscriptions.length}`);
 }
 
 function updateStatusBarItem(): void {

@@ -6,12 +6,10 @@ import { EXTENSION_BASE, SHOW_TABLE } from "../Utils/strings";
 export class ShowTable implements Command{
 
     private name:string;
-    private realTime:boolean;
     private panel: vscode.WebviewPanel;
     private contentString: string;
     constructor(){
-        this.name = EXTENSION_BASE +  SHOW_TABLE;
-        this.realTime = false;
+        this.name = SHOW_TABLE;
         this.panel = vscode.window.createWebviewPanel(
             'countLinesOutput', // Identifies the type of the webview. Used internally
             'Count Lines Output', // Title of the panel displayed to the user
@@ -45,8 +43,5 @@ export class ShowTable implements Command{
 
     getCommandName(): string {
         return this.name;
-    }
-    isRealTime(): boolean {
-        return this.realTime;
     }
 }

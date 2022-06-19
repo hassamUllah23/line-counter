@@ -1,11 +1,11 @@
 {
-  	"name": "line-counter",
+  	"name": "line-counter-v1",
 	"publisher": "HassamUllah",
 	"displayName": "Line Counter",
 	"icon": "images/count.png",
 	"description": "Keep a check on the number of lines in your active editor and in your selection.",
 	"qna": "marketplace",
-	"version": "0.0.6",
+	"version": "0.0.7",
 	"keywords": [
 		"line counter",
 		"line",

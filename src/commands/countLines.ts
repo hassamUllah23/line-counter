@@ -6,18 +6,16 @@ export class CountLines implements Command{
 
     private context:vscode.ExtensionContext;
     private name:string;
-    private realTime:boolean;
     private myStatusBarItem: vscode.StatusBarItem;
 
     constructor(context:vscode.ExtensionContext){
         this.context=context;
-        this.name = EXTENSION_BASE + COUNT_LINES;
-        this.realTime = true;
+        this.name = COUNT_LINES;
         this.myStatusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left,0);
 
-        this.context.subscriptions.push(this.getCommandDisposable());
-        this.context.subscriptions.push(vscode.window.onDidChangeActiveTextEditor(this.getCommandDisposable));
-        this.context.subscriptions.push(vscode.window.onDidChangeTextEditorSelection(this.getCommandDisposable));
+        context.subscriptions.push(this.getCommandDisposable());
+	    vscode.window.onDidChangeActiveTextEditor(this.updateStatusBarItem,this,context.subscriptions);
+	    vscode.window.onDidChangeTextEditorSelection(this.updateStatusBarItem,this,context.subscriptions);
     }
 
 
@@ -29,10 +27,6 @@ export class CountLines implements Command{
 
     getCommandName(): string {
         return this.name;
-    }
-    
-    isRealTime(): boolean {
-        return this.realTime;
     }
 
     private updateStatusBarItem(): void {

@@ -29,8 +29,7 @@
 	],
 	"activationEvents": [
 		"*",
-		"onStartupFinished:line-counter.countLines",
-		"onCommand:line-counter.countLinesX"
+		"onStartupFinished:line-counter.countLines"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
@@ -40,7 +39,7 @@
 				"key": "ctrl+c ctrl+l"
 			},
 			{
-				"command": "line-counter.countLinesFromMenu",
+				"command": "line-counter.countLinesInProject",
 				"key": "ctrl+shift+c ctrl+shift+l"
 			}
 		],
@@ -50,11 +49,7 @@
 				"title": "Count Lines: In Active Editor"
 			},
 			{
-				"command": "line-counter.countLinesX",
-				"title": "Count Lines: In Active Editor X"
-			},
-			{
-				"command": "line-counter.countLinesFromMenu",
+				"command": "line-counter.countLinesInProject",
 				"title": "Count Lines: In Project"
 			}
 		],
